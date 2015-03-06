@@ -1,0 +1,5 @@
+services:
+    jarobe_xero.api:
+        class: Jarobe\XeroBundle\Service\XeroService
+        arguments:  [%jarobe_xero.key%, %jarobe_xero.secret%, %jarobe_xero.application_type%,%jarobe_xero.oauth_callback%,%jarobe_xero.private_key%, %jarobe_xero.public_key%, %jarobe_xero.user_agent%]
+
