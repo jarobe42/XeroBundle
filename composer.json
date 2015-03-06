@@ -3,7 +3,7 @@
     "type" : "symfony-bundle",
     "description" : "PHP client for interacting with Xero API",
     "keywords": ["symfony2", "xero"],
-    "homepage": "https://github.com/jarobe/XeroBundle",
+    "homepage": "https://github.com/jarobe42/XeroBundle",
     "authors" : [{
         "name" : "James Robertson",
         "email" : "jim@jarobe.com"
