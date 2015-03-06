@@ -20,7 +20,8 @@ class LineItem {
     private $quantity;
 
     /**
-     * @var string
+     * @var integer
+     * In cents, so amount needs to be divided by 100 before sending to xero.
      */
     private $unitAmount;
 
@@ -115,7 +116,7 @@ class LineItem {
         $itemArr = [
             "Description"   => $this->getDescription(),
             "Quantity"      => $this->getQuantity(),
-            "UnitAmount"    => $this->getUnitAmount(),
+            "UnitAmount"    => $this->getUnitAmount()/100,
             "AccountCode"   => $this->getAccountCode()
         ];
         return $itemArr;

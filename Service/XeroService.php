@@ -8,6 +8,7 @@
 namespace Jarobe\XeroBundle\Service;
 
 use Jarobe\XeroBundle\Model\Accounting\Invoice;
+use Jarobe\XeroBundle\Model\Accounting\Payment;
 use Jarobe\XeroBundle\Model\Api\Response;
 use Jarobe\XeroBundle\Util\XMLConverter;
 use SimpleXMLElement;
@@ -18,7 +19,7 @@ class XeroService {
 
     private $api;
 
-    public function __construct($key, $secret, $applicationType, $oauthCallback, $privateKey, $publicKey, $userAgent){
+    public function __construct($key, $secret, $applicationType, $oauthCallback, $privateKey, $publicKey, $userAgent, $accountId){
        $this->config = [
            'consumer_key'       => $key,
            'shared_secret'      => $secret,
@@ -31,6 +32,7 @@ class XeroService {
            'rsa_private_key'   => $privateKey,
            'rsa_public_key'    => $publicKey,
            'user_agent'        => $userAgent,
+           'accountId'          => $accountId
         ];
 
         if($applicationType == "Private"){
@@ -47,7 +49,12 @@ class XeroService {
         return $this->api;
     }
 
+    public function getAccountCode(){
+        return $this->config['accountId'];
+    }
+
     /**
+     * This needs to be modified to return to take an array of invoices, and also return full Invoice objects
      * @param Invoice $invoice
      * @return string|null
      */
@@ -75,6 +82,47 @@ class XeroService {
                         return $invoiceResponse["InvoiceID"];
                     }
                 }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * This needs to be modified to return an array of full payment objects
+     * @param Array $payments
+     * @return string|null
+     */
+    public function postPayments(array $payments){
+        $key = "Payments";
+        $url = $this->api->url($key);
+
+        $postArr = [];
+        foreach($payments as $payment){
+            if($payment instanceof Payment){
+                $postArr[] = $payment->toArray();
+            }
+        }
+
+        if(count($postArr) > 0){
+            $postData = [
+                $key => [
+                    "Payment" => [
+                        $postArr
+                    ]
+                ]
+            ];
+            $xml =  XMLConverter::getXml($key, $postData)->asXML();
+            $data = $this->api->request("PUT", $url, [],$xml, "json");
+
+            $response = new Response($this->api, $data);
+
+            if($response->isSuccessful()){
+                $responseArr = $response->getModelData($key);
+                $paymentArr = [];
+                foreach($responseArr as $item){
+                    $paymentArr[$item['Reference']] = $item['PaymentID'];
+                }
+                return $paymentArr;
             }
         }
         return null;
