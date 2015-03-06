@@ -30,7 +30,7 @@
     }],
     "autoload" : {
       "psr-0" : {
-        "jarobe42\\XeroBundle" : ""
+        "Jarobe\\XeroBundle" : ""
       }
     },
     "target-dir" : "Jarobe/XeroBundle"
