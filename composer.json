@@ -11,23 +11,8 @@
     "require": {
       "php": ">=5.4.0",
       "symfony/framework-bundle": "~2.3",
-      "xero-api/xero-oauth-sdk": "dev-master"
+      "xero/xerooauth-php": "dev-master"
     },
-    "repositories" : [{
-      "type": "package",
-      "package": {
-        "name": "xero-api/xero-oauth-sdk",
-        "version": "dev-master",
-        "source": {
-          "url": "https://github.com/XeroAPI/XeroOAuth-PHP",
-          "type": "git",
-          "reference": "master"
-        },
-        "autoload": {
-          "classmap": ["lib/"]
-        }
-      }
-    }],
     "autoload" : {
       "psr-0" : {
         "Jarobe\\XeroBundle" : ""
