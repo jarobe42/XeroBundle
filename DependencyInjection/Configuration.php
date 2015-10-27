@@ -29,7 +29,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('application_type')->end()
                 ->scalarNode('user_agent')->end()
                 ->scalarNode('oauth_callback')->end()
-                ->scalarNode('account_id')->end()
             ->end()
         ;
 

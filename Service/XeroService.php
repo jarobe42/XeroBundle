@@ -19,7 +19,7 @@ class XeroService {
 
     private $api;
 
-    public function __construct($key, $secret, $applicationType, $oauthCallback, $privateKey, $publicKey, $userAgent, $accountId){
+    public function __construct($key, $secret, $applicationType, $oauthCallback, $privateKey, $publicKey, $userAgent){
        $this->config = [
            'consumer_key'       => $key,
            'shared_secret'      => $secret,
@@ -31,8 +31,7 @@ class XeroService {
            'oauth_callback'    => $oauthCallback,
            'rsa_private_key'   => $privateKey,
            'rsa_public_key'    => $publicKey,
-           'user_agent'        => $userAgent,
-           'accountId'          => $accountId
+           'user_agent'        => $userAgent
         ];
 
         if($applicationType == "Private"){
@@ -47,10 +46,6 @@ class XeroService {
      */
     public function getApi(){
         return $this->api;
-    }
-
-    public function getAccountCode(){
-        return $this->config['accountId'];
     }
 
     /**

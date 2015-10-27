@@ -9,4 +9,3 @@ services:
             - %jarobe_xero.private_key%
             - %jarobe_xero.public_key%
             - %jarobe_xero.user_agent%
-            - "%jarobe_xero.account_id%"

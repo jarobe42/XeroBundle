@@ -32,6 +32,5 @@ class JarobeXeroExtension extends Extension
         $container->setParameter('jarobe_xero.application_type', $config['application_type']);
         $container->setParameter('jarobe_xero.user_agent', $config['user_agent']);
         $container->setParameter('jarobe_xero.oauth_callback', $config['oauth_callback']);
-        $container->setParameter('jarobe_xero.account_id', isset($config['account_id']) ? $config['account_id'] : null);
     }
 }
