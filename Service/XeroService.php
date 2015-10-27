@@ -94,23 +94,20 @@ class XeroService {
         $postArr = [];
         foreach($payments as $payment){
             if($payment instanceof Payment){
-                $postArr[] = $payment->toArray();
+                $postArr[] = [
+                    "Payment" => $payment->toArray()
+                ];
             }
         }
 
         if(count($postArr) > 0){
             $postData = [
-                $key => [
-                    "Payment" => [
-                        $postArr
-                    ]
-                ]
+                $key => $postArr
             ];
             $xml =  XMLConverter::getXml($key, $postData)->asXML();
             $data = $this->api->request("PUT", $url, [],$xml, "json");
 
             $response = new Response($this->api, $data);
-
             if($response->isSuccessful()){
                 $responseArr = $response->getModelData($key);
                 $paymentArr = [];
