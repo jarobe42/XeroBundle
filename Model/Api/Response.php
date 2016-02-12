@@ -21,7 +21,15 @@ class Response {
         $this->api = $api;
         $this->data;
         $this->code = isset($data['code']) ?$data['code'] : null;
-        $this->response = isset($data['response']) ? json_decode($data['response'], true) : null;
+
+        if(isset($data['response'])){
+            if(self::isJson($data['response'])){
+                $this->response = json_decode($data['response'], true);
+            } else {
+                $this->response = $data['response'];
+            }
+        }
+
     }
 
     public function getData()
@@ -49,5 +57,10 @@ class Response {
     public function isSuccessful()
     {
         return $this->getCode() == 200;
+    }
+
+    private static function isJson($string) {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 }

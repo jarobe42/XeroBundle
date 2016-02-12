@@ -49,7 +49,7 @@ class XeroService {
     }
 
     /**
-     * This needs to be modified to return to take an array of invoices, and also return full Invoice objects
+     * TODO - This needs to be modified to return to take an array of invoices, and also return full Invoice objects
      * @param Invoice $invoice
      * @return string|null
      */
@@ -77,13 +77,15 @@ class XeroService {
                         return $invoiceResponse["InvoiceID"];
                     }
                 }
+            } else {
+                throw new \RuntimeException($response->getResponse(), $response->getCode());
             }
         }
         return null;
     }
 
     /**
-     * This needs to be modified to return an array of full payment objects
+     * TODO - This needs to be modified to return an array of full payment objects
      * @param Array $payments
      * @return string|null
      */
@@ -115,6 +117,8 @@ class XeroService {
                     $paymentArr[$item['Reference']] = $item['PaymentID'];
                 }
                 return $paymentArr;
+            } else {
+                throw new \RuntimeException($response->getResponse(), $response->getCode());
             }
         }
         return null;
