@@ -118,7 +118,11 @@ class XeroService {
                 }
                 return $paymentArr;
             } else {
-                throw new \RuntimeException($response->getResponse(), $response->getCode());
+                $responseString = $response->getResponse();
+                if(is_array($responseString)){
+                    $responseString = json_encode($responseString);
+                }
+                throw new \RuntimeException($responseString, $response->getCode());
             }
         }
         return null;
