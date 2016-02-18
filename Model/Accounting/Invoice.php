@@ -230,15 +230,15 @@ class Invoice {
             "Status"            => $this->getStatus()
         ];
 
-        $itemArr = [];
+        $invoiceArr['LineItems'] = [];
         foreach($this->getLineItems() as $item){
             /**
              * @var LineItem $item
              */
-            $itemArr[] = $item->toArray();
+            $invoiceArr['LineItems'][] = [
+                'LineItem' => $item->toArray()
+            ];
         }
-        $invoiceArr['LineItems'] = [];
-        $invoiceArr['LineItems']['LineItem'] = $itemArr;
         return $invoiceArr;
     }
 }

@@ -65,7 +65,6 @@ class XeroService {
             ];
 
             $xml =  XMLConverter::getXml($key, $putData)->asXML();
-
             $data = $this->api->request("POST", $url, [],$xml, "json");
 
             $response = new Response($this->api, $data);
