@@ -45,6 +45,19 @@ class Response {
         return $this->response;
     }
 
+    /**
+     * @return string
+     */
+    public function getResponseMessage()
+    {
+        $responseString = $this->getResponse();
+        if (is_array($responseString)) {
+            $responseString = json_encode($responseString);
+        }
+
+        return $responseString;
+    }
+
     public function getModelData($key){
         if(isset($this->response[$key])){
             return $this->response[$key];
