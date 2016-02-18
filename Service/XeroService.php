@@ -78,7 +78,7 @@ class XeroService {
                     }
                 }
             } else {
-                throw new \RuntimeException($response->getResponse(), $response->getCode());
+                throw new \RuntimeException($response->getResponseMessage(), $response->getCode());
             }
         }
         return null;
@@ -118,11 +118,7 @@ class XeroService {
                 }
                 return $paymentArr;
             } else {
-                $responseString = $response->getResponse();
-                if(is_array($responseString)){
-                    $responseString = json_encode($responseString);
-                }
-                throw new \RuntimeException($responseString, $response->getCode());
+                throw new \RuntimeException($response->getResponseMessage(), $response->getCode());
             }
         }
         return null;
