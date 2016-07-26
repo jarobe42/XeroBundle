@@ -1,3 +1,0 @@
-jarobe_xero_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: JarobeXeroBundle:Default:index }

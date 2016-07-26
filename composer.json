@@ -1,7 +1,7 @@
 {
     "name" : "jarobe42/xero-bundle",
     "type" : "symfony-bundle",
-    "description" : "PHP client for interacting with Xero API",
+    "description" : "Symfony2 bundle for wrapping ",
     "keywords": ["symfony2", "xero"],
     "homepage": "https://github.com/jarobe42/XeroBundle",
     "authors" : [{
@@ -9,9 +9,9 @@
         "email" : "jim@jarobe.com"
     }],
     "require": {
-      "php": ">=5.4.0",
-      "symfony/framework-bundle": "~2.3",
-      "xero/xerooauth-php": "dev-master"
+      "php": ">=5.5.0",
+      "symfony/framework-bundle": "~2.8.8",
+      "calcinai/xero-php": "~1.3.3"
     },
     "autoload" : {
       "psr-0" : {
