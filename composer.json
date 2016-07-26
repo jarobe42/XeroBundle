@@ -13,10 +13,16 @@
       "symfony/framework-bundle": "~2.8.8",
       "calcinai/xero-php": "~1.3.3"
     },
+    "require-dev": {
+      "phpunit/phpunit": "^4.8.24"
+    },
     "autoload" : {
       "psr-0" : {
         "Jarobe\\XeroBundle" : ""
-      }
+      },
+      "exclude-from-classmap": [
+        "/Tests/"
+      ]
     },
     "target-dir" : "Jarobe/XeroBundle"
 }
