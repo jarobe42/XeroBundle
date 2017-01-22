@@ -16,7 +16,7 @@ class XeroService
            'oauth' => [
                'consumer_key' => $key,
                'consumer_secret' => $secret,
-               'callbacl' => $oauthCallback,
+               'callback' => $oauthCallback,
                'rsa_private_key' => $privateKey,
                'rsa_public_key' => $publicKey,
            ],
